@@ -1,8 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Projects from './Pages/Projects'
-import Home from './Pages/Home'
-import CoolThings from './Pages/CoolThings'
+import Projects from './Pages/Projects/Projects'
+import Home from './Pages/Home/Home'
+import CoolThings from './Pages/CoolThings/CoolThings'
 
 class Content extends React.Component {
 	render() {
