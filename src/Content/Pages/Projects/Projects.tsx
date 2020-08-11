@@ -2,7 +2,6 @@ import React from 'react'
 import ProjectCard from './ProjectCard/ProjectCard'
 import { getProjects } from '../../../Services/Db'
 import { Project } from './Project'
-import config from '../../../Services/config.json'
 
 class Projects extends React.Component<any, Project[]> {
 	projectCards() {
@@ -27,7 +26,7 @@ class Projects extends React.Component<any, Project[]> {
 		}
 	}
 	componentDidMount() {
-		getProjects<Project[]>(config.connectionString).then((data) => {
+		getProjects<Project[]>("http://127.0.0.1:7192/projects").then((data) => {
 			this.setState(data)
 		})
 	}
