@@ -4,20 +4,9 @@ import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import { Project } from '../Project'
 
-interface ProjectCardProps {
-	name: string
-	language: string
-	url: string
-	description?: string
-	license?: License
-}
-interface License {
-	name: string
-	url: string
-}
-
-class ProjectCard extends React.Component<ProjectCardProps> {
+class ProjectCard extends React.Component<Project> {
 	render() {
 		return (
 			<Card
@@ -56,8 +45,14 @@ class ProjectCard extends React.Component<ProjectCardProps> {
 				</CardContent>
 				<CardActions style={{ justifyContent: 'center' }}>
 					{this.props.license && (
-						<Button href={this.props.license.url} size="medium">
-							{this.props.license.name}
+						<Button
+							href={
+								'https://choosealicense.com/licenses/' +
+								this.props.license
+							}
+							size="medium"
+						>
+							{this.props.license}
 						</Button>
 					)}
 				</CardActions>
