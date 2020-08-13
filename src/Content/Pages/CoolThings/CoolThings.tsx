@@ -1,10 +1,23 @@
 import React from 'react'
+import { useRouteMatch, Switch, Route, Redirect } from 'react-router-dom'
+import { Status } from '../../../UIElements/Status'
+import McRide from './Links/McRide'
 
-export default function CoolThings() {
-    return (
-        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.shitpostbot.com%2Fimg%2Fsourceimages%2Fmc-ride-transparent-57bfac9b47527.png"
-            width="1000"
-            height="800"
-            alt="Mc Ride pointing at you" />
-    )
+export default function CoolThings(): JSX.Element {
+	const match = useRouteMatch()
+	return (
+		<Switch>
+			<Route path={match.path + '/mc-ride'}>
+				<McRide />
+			</Route>
+			<Route path={match.path + '/'} exact>
+				<Status>
+					Will be a collection of things I find interesting
+				</Status>
+			</Route>
+			<Route path="*">
+				<Redirect to={match.path} exact />
+			</Route>
+		</Switch>
+	)
 }
