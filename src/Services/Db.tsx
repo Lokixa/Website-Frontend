@@ -1,7 +1,11 @@
-function getProjects<T>(url: string): Promise<T> {
-	return fetch(url).then((data) => {
-		return data.json() as Promise<T>
-	})
+import { Project } from '../Content/Pages/Projects/Project'
+
+class DbServices {
+	static getProjects(url: string): Promise<Project[]> {
+		return fetch(url).then((data) => {
+			return data.json() as Promise<Project[]>
+		})
+	}
 }
 
-export { getProjects }
+export default DbServices

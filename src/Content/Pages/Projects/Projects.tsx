@@ -1,37 +1,52 @@
 import React from 'react'
 import ProjectCard from './ProjectCard/ProjectCard'
-import { getProjects } from '../../../Services/Db'
-import { Project } from './Project'
+import DbService from '../../../Services/Db'
+import { Status } from '../../../UIElements/Status'
 
-class Projects extends React.Component<any, Project[]> {
-	projectCards() {
-		if (this.state) {
-			let project = this.state[0]
-			const items = new Array<JSX.Element>()
-			for (let i = 0; project; i++) {
-				project = this.state[i]
-				if (!project) break
-				items.push(
-					<ProjectCard
-						name={project.name}
-						language={project.language}
-						url={project.url}
-						license={project.license}
-						description={project.description}
-						key={project.name}
-					/>
-				)
-			}
-			return items
-		}
-	}
+interface ProjectsState {
+	items: JSX.Element[] | null
+	isLoading: boolean
+	hasFailed: boolean
+}
+
+class Projects extends React.Component<any, ProjectsState> {
+	state: ProjectsState = { items: [], isLoading: true, hasFailed: false }
 	componentDidMount() {
-		getProjects<Project[]>("http://127.0.0.1:7192/projects").then((data) => {
-			this.setState(data)
-		})
+		DbService.getProjects('http://127.0.0.1:7192/projects')
+			.then((data) => {
+				const items = new Array<JSX.Element>()
+				for (let i = 0; ; i++) {
+					let project = data[i]
+					if (!project) break
+					items.push(
+						<ProjectCard
+							name={project.name}
+							language={project.language}
+							url={project.url}
+							license={project.license}
+							description={project.description}
+							key={project.name}
+						/>
+					)
+				}
+				this.setState({ items, isLoading: false })
+			})
+			.catch((err) => {
+				this.setState({
+					items: [],
+					isLoading: false,
+					hasFailed: true,
+				})
+			})
 	}
 	render() {
-		return <React.Fragment>{this.projectCards()}</React.Fragment>
+		if (this.state.hasFailed) {
+			return <Status>Can't connect to database</Status>
+		}
+		if (this.state.isLoading) {
+			return <Status>Loading...</Status>
+		}
+		return <React.Fragment>{this.state?.items}</React.Fragment>
 	}
 }
 export default Projects
