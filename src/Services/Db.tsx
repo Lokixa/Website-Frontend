@@ -1,10 +1,16 @@
 import { Project } from '../Content/Pages/Projects/Project'
 
 class DbServices {
-	static getProjects(url: string): Promise<Project[]> {
-		return fetch(url).then((data) => {
-			return data.json() as Promise<Project[]>
-		})
+	private static url: string = 'https://api.lyubenk.com/'
+	static getProjects(): Promise<Project[]> {
+		return fetch(this.url + 'projects').then(
+			(data) => data.json() as Promise<Project[]>
+		)
+	}
+	static getProject(name: string): Promise<Project> {
+		return fetch(this.url + 'projects/' + name).then(
+			(data) => data.json() as Promise<Project>
+		)
 	}
 }
 

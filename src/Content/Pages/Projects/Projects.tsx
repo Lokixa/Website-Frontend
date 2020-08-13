@@ -12,7 +12,7 @@ interface ProjectsState {
 class Projects extends React.Component<any, ProjectsState> {
 	state: ProjectsState = { items: [], isLoading: true, hasFailed: false }
 	componentDidMount() {
-		DbService.getProjects('http://127.0.0.1:7192/projects')
+		DbService.getProjects()
 			.then((data) => {
 				const items = new Array<JSX.Element>()
 				for (let i = 0; ; i++) {
