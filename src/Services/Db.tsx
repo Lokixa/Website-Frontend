@@ -1,5 +1,5 @@
 import { Project } from '../Content/Pages/Projects/Project'
-import Config from '../Services/config.json'
+import Config from '../config.json'
 
 class DbServices {
 	private static url: string = Config.BackendURL
