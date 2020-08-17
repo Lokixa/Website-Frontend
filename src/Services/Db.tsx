@@ -12,8 +12,6 @@ class DbServices {
 		redirect: 'follow',
 	}
 	static getProjects(): Promise<Project[]> {
-		console.log('Getting', this.url)
-		console.log('Instead of ', process.env.REACT_APP_BACKEND_URL)
 		return fetch(this.url + 'projects', this.requestOptions).then(
 			(data) => data.json() as Promise<Project[]>
 		)
