@@ -1,15 +1,25 @@
 import { Project } from '../Content/Pages/Projects/Project'
-import Config from '../config.json'
 
 class DbServices {
-	private static url: string = Config.BackendURL
+	private static url: string =
+		process.env.REACT_APP_BACKEND_URL || 'http://localhost:7192/'
+
+	static requestOptions: RequestInit = {
+		method: 'GET',
+		headers: {
+			Authorization: process.env.REACT_APP_BACKEND_KEY || '',
+		},
+		redirect: 'follow',
+	}
 	static getProjects(): Promise<Project[]> {
-		return fetch(this.url + 'projects').then(
+		console.log('Getting', this.url)
+		console.log('Instead of ', process.env.REACT_APP_BACKEND_URL)
+		return fetch(this.url + 'projects', this.requestOptions).then(
 			(data) => data.json() as Promise<Project[]>
 		)
 	}
 	static getProject(name: string): Promise<Project> {
-		return fetch(this.url + 'projects/' + name).then(
+		return fetch(this.url + 'projects/' + name, this.requestOptions).then(
 			(data) => data.json() as Promise<Project>
 		)
 	}
