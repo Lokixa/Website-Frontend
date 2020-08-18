@@ -1,7 +1,8 @@
 import React from 'react'
-import { useRouteMatch, Switch, Route, Redirect } from 'react-router-dom'
-import { Status } from '../../../UIElements/Status'
-import McRide from './Links/McRide'
+import { useRouteMatch, Switch, Route } from 'react-router-dom'
+import McRide from './Pages/McRide'
+import ErrorPage from '../../../UIElements/ErrorPage'
+import CoolThingsIndex from './Pages/CoolThingsIndex'
 
 export default function CoolThings(): JSX.Element {
 	const match = useRouteMatch()
@@ -11,12 +12,10 @@ export default function CoolThings(): JSX.Element {
 				<McRide />
 			</Route>
 			<Route path={match.path + '/'} exact>
-				<Status>
-					Will be a collection of things I find interesting
-				</Status>
+				<CoolThingsIndex />
 			</Route>
 			<Route path="*">
-				<Redirect to={match.path} exact />
+				<ErrorPage>Invalid Page</ErrorPage>
 			</Route>
 		</Switch>
 	)

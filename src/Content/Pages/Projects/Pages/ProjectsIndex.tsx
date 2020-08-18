@@ -1,7 +1,7 @@
 import React from 'react'
-import ProjectCard from './ProjectCard/ProjectCard'
-import { Status } from '../../../UIElements/Status'
-import DbService from '../../../Services/Db'
+import ProjectCard from '../ProjectCard/ProjectCard'
+import { Status } from '../../../../UIElements/Status'
+import DbService from '../../../../Services/DbServices'
 
 interface ProjectsState {
 	items: JSX.Element[] | null
@@ -9,7 +9,7 @@ interface ProjectsState {
 	hasFailed: boolean
 }
 
-class ProjectCards extends React.Component<any, ProjectsState> {
+class ProjectsIndex extends React.Component<any, ProjectsState> {
 	state: ProjectsState = { items: [], isLoading: true, hasFailed: false }
 
 	componentDidMount() {
@@ -49,4 +49,4 @@ class ProjectCards extends React.Component<any, ProjectsState> {
 		return <React.Fragment>{this.state?.items}</React.Fragment>
 	}
 }
-export default ProjectCards
+export default ProjectsIndex

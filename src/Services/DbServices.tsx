@@ -1,8 +1,7 @@
-import { Project } from '../Content/Pages/Projects/Project'
+import { Project } from './DbModels/Project'
 
 class DbServices {
-	private static url: string =
-		process.env.REACT_APP_BACKEND_URL || 'http://localhost:7192/'
+	private static url: string = process.env.REACT_APP_BACKEND_URL || ''
 
 	static requestOptions: RequestInit = {
 		method: 'GET',

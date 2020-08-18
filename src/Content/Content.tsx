@@ -1,8 +1,9 @@
 import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Projects from './Pages/Projects/Projects'
 import Home from './Pages/Home/Home'
 import CoolThings from './Pages/CoolThings/CoolThings'
+import ErrorPage from '../UIElements/ErrorPage'
 
 class Content extends React.Component {
 	render() {
@@ -13,7 +14,7 @@ class Content extends React.Component {
 					<Route path="/" exact component={Home} />
 					<Route path="/cool-things" component={CoolThings} />
 					<Route path="*">
-						<Redirect to="/" exact />
+						<ErrorPage>Invalid Page</ErrorPage>
 					</Route>
 				</Switch>
 			</div>

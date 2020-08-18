@@ -1,10 +1,11 @@
 import React from 'react'
+import { Status } from '../../../UIElements/Status'
 
-export default function CoolThings() {
+export default function Home() {
 	return (
-		<div className="h3 py-3 text-center">
+		<Status>
 			Blank homepage for now.
 			<br /> Will update when I know what to put here.
-		</div>
+		</Status>
 	)
 }

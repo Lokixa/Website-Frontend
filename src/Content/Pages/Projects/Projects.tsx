@@ -1,16 +1,17 @@
 import React from 'react'
-import ProjectCards from './ProjectCards'
-import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom'
+import ProjectsIndex from './Pages/ProjectsIndex'
+import { Switch, Route, useRouteMatch } from 'react-router-dom'
+import ErrorPage from '../../../UIElements/ErrorPage'
 
 export default function Projects(): JSX.Element {
 	const match = useRouteMatch()
 	return (
 		<Switch>
 			<Route path={match.path + '/'} exact>
-				<ProjectCards />
+				<ProjectsIndex />
 			</Route>
 			<Route path="*">
-				<Redirect to={match.path} />
+				<ErrorPage>Invalid Page</ErrorPage>
 			</Route>
 		</Switch>
 	)
