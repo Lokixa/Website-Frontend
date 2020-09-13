@@ -1,5 +1,9 @@
 # Website frontend
+
 ## Framework-ish
-React
+
+React with Next.js
+
 ## CSS
+
 Bootstrap
