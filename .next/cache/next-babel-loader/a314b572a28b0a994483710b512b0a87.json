@@ -1,1 +1,0 @@
-{"ast":null,"code":"var __jsx = React.createElement;\nimport React from \"react\";\nimport { Status } from \"../../components/Status\";\n\nconst CoolThingsIndex = () => {\n  return __jsx(Status, null, \"Will be a collection of things I find interesting\");\n};\n\nexport default CoolThingsIndex;","map":null,"metadata":{},"sourceType":"module"}

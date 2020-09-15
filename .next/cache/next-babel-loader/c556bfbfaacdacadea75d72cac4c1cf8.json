@@ -1,1 +1,0 @@
-{"ast":null,"code":"var __jsx = React.createElement;\nimport React from \"react\";\nimport { Status } from \"../components/Status\";\nexport default function Home() {\n  return __jsx(Status, null, \"Blank homepage for now.\", __jsx(\"br\", null), \" Will update when I know what to put here.\");\n}","map":null,"metadata":{},"sourceType":"module"}
